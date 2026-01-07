@@ -43,3 +43,5 @@ $: s("wt_vgame:3!16").n("<0 4 0 0 7 0 <4@7 9> 7>*16").scale("g#:minor")
   .compressor("-20:20:10:.002:.02")
   .o(5)
   ._scope({ thickness: 1 })
+
+all(x => x.postgain(.2))
