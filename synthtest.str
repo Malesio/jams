@@ -1,0 +1,92 @@
+setCpm(128/4)
+
+register('acidenv', (x, pat) => {
+  return pat.lpf(100).lpenv(x * 9).lpq(2).lps(.2).lpd(.12)
+});
+
+$drums: stack(
+    s("bd:1!4").bank("tr909").duck("4:5:6:7:8:9").duckdepth(1).dist("1.5:.9")
+    ._scope(),
+
+    s("[~ oh]*4").bank("tr909").dec(.1).delay(.2),
+    s("[~ <sd!7 [sd -@2 sd]>]*2").bank("tr909").dec(.2).diode(3).hpf(900).compressor(-3),
+    s("cp!4").bank("tr909").att(.02).room(5).size(5).compressor(-10).gain(.3).o(8)
+)
+  // .rib(0, 1/4)
+
+$sub: s("sine").n("<7@2 3 5>").scale("ab:minor").trans(-36)
+  .lpf(60)
+  .dist("2.5:.4")
+  // .penv(-12)
+  // .patt(.08)
+  // .dec(1.5).sus(0).rel(.5)
+  .chorus(.7)
+  .compressor("-15:20:10")
+  .o(9)
+  ._scope()
+
+$bass: s("supersaw").n("<7@2 3 5>").scale("ab:minor").trans(-36)
+  .unison(4)
+  .detune(sine.slow(2).range(.4, .6))
+  .lpf(150)
+  .hpf(100)
+  .chebyshev("4.5:.4")
+  .phaser(.5)
+  .chorus(.7)
+  .compressor("-15:20:10")
+  .o(7)._scope()
+
+_$lead: s("wt_digital").seg(16).n("<0@2 3 5>").scale("ab:minor").trans("0")
+  .dec(sine.range(.1, .3).slow(2)).sus(0).rel(0)
+  .n(irand(4).slow(2).rib(2,1))
+  .unison(4)
+  .wt(tri.fast(5)).wtenv(.3)
+  .hpf(600).hpq(3).hps(.2).hpd(.16)
+  .diode("2.5:.4")
+  .acidenv(slider(1))
+  .compressor("-7:20:10")
+  .room(1).roomsize(3)
+  .o(6)
+  ._scope()
+
+_$: s("[wt_digital_basique,supersaw]!16").note(
+  "<bb1 db2 eb2@2>".add("0,19")
+)
+    .dec(.16)
+    .unison(4)
+  .wt(slider(0.295)).wtenv(slider(0.209))
+    .detune(rand)
+    .pan(sine.fast(2).mul(.25).add(.25))
+    .lpf(900)
+    .diode("1.3:.4")
+    .compressor("-20:20:10")
+    .gain(.5)
+    .o(5)
+    ._scope({ thickness: 2, trigger: .5 })
+
+_$: s("<square saw>!16").n(
+  "<0 3 0 7 9 <0@4 4@4> 5 6>*16"
+  .add("<7 [9 7] 10 [11 12]>")
+  .sub("<0 7>")
+)
+    .scale("f:minor")
+    .dec(sine.range(.05, .2)).sus(0).rel(0)
+  // .unison(4)
+  // .wt(slider(0.324))
+  // .wtenv(.3)
+    .fm(sine.range(0.2, 0.5).slow(2))
+    .fmh(.01)
+    .hpf(600).hpq(3)
+    .dist("<4:.4@2 1.5:.4 2.5:.4>")
+    .disttype("<sinefold chebyshev>/2")
+    .chorus(.7)
+    .compressor("-12:20:10")
+    .delay(.6)
+    .room(2).roomsize(2)
+    .penv(.2)
+    // .mask("<1 0>*2")
+    .o(4)
+    ._scope({ thickness: 2, trigger: .5 })
+
+// all(x => x.postgain(.2))
+
