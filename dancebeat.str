@@ -28,7 +28,10 @@ $: s("supersaw").note("<f2@14 g#2 f#2>*8".add("0,-12").add(bassOffset))
   .o(4)
   ._scope()
 
-$: s("<square saw>*8").struct("x(3, 8)*2").note("<f5 f4 g#5 <c5 <a#5 a5>>>*2".add(leadOffset))
+$: s("<square saw>*8").struct("x(3, 8)*2").note(
+  "<f5 f4 g#5 <c5 <a#5 a5>>>*2".add(leadOffset)
+  // "<f5 f4 ~ g#5>*8"
+  )
   .hpf(5000)
   .dist("3:.4")
   .disttype("<chebyshev diode>")
