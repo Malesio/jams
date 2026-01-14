@@ -1,0 +1,40 @@
+setCpm(144/4)
+
+const bassOffset = "<0@14 7 [8@2 5 7]>*2";
+const leadOffset = "<0@14 7 8>*2";
+
+const bdPatt = 
+  // "bd(6, 16)"
+  // "bd(3, 8)".fast(2)
+  "bd!4".fast("<1@7 <2 3 2 4>>*4")
+
+$: stack(
+  s("white!4").postgain(0).duck(5).duckdepth(.8),
+  s(bdPatt).bank("tr909").dec(.4).duck("4").duckattack(.15).dist(1).duckdepth(.9).compressor(-10),
+  s("[~ <sd!15 [sd ~@2 sd]>]*2").bank("tr909").dec(.1).dist(2).hpf(1000).compressor(-20),
+  s("[~ oh]*4").bank("tr909").dec(.1).delay(.1),
+  s("cp!4").bank("tr909").att(.03).room(3).size(3).gain(.3).o(5)
+)
+
+$: s("supersaw").note("<f2@14 g#2 f#2>*8".add("0,-12").add(bassOffset))
+  .unison(4)
+  .detune(sine.range(.25, .75).fast(2))
+  .seg(16)
+  .lpf(100).lpenv(5).lpq(2).lps(.16)
+  .pan(sine.range(.4, .6).fast(4))
+  .diode("2:.5")
+  .compressor(-15)
+  .postgain(.6)
+  .o(4)
+  ._scope()
+
+$: s("<square saw>*8").struct("x(3, 8)*2").note("<f5 f4 g#5 <c5 <a#5 a5>>>*2".add(leadOffset))
+  .hpf(5000)
+  .dist("3:.4")
+  .disttype("<chebyshev diode>")
+  .delay(.3)
+  .room(1)
+  .size(3)
+  .compressor(-20)
+  .postgain(.5)
+  ._scope()
