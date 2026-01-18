@@ -15,7 +15,7 @@ tops: stack(
 
 lead: s("gm_lead_1_square").n("<1 2>")
   .note("ab4 [db5 ab4 gb4 eb4] <db4 e4> <e4 gb4>".slow(4).add(12))
-  .struct("[~ <x!7 x*2>]*4")
+  .struct("[~ x]*4")
   .hpf(2500)
   .diode("3:.6")
   .delay(.4)
