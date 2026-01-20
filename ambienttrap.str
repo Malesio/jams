@@ -19,7 +19,7 @@ snare: s("sd").bank("bossdr110").beat("4,9?,12,15?", 16).slow(2)
 hats: s("hh").bank("tr808").seg(8).rarely(ply("2 | 3 | 4"))
 
 b808: s("sine").beat(downbeat, 16).slow(2)
-  .note("<g1 [g1@3 g2] g1 [f1@2 d1@2] g1 [g1@3 g2] bb1 [c2@3 g2]>/2")
+  .note("<g1 [g1@3 g2] g1 [f1@2 d1@2] g1 [g1@3 g2] bb1 [c2@2 d2 d1]>/2")
   .dec(.7).rel("<.6 [.1 .6@2 .1] .6 [.1 .6@2 .1]>")
   .lpf(50)
   .dist(2.1)
