@@ -1,3 +1,5 @@
+setCpm(122/4)
+
 // Relative lowpass filter, ripped from Switch Angel
 register('rlpf', (x, pat) => {
   return pat.lpf(pure(x).mul(12).pow(4))
