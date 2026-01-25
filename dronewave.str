@@ -27,7 +27,11 @@ stabs: note(variantStabs) // pattern
   .orbit(3) // routing
   ._scope()
 
-reese: note("c1,c2")
+reese: note(
+    "c1,c2"
+    // "<eb1 c1>"
+    // "<c1 eb1 f1 g1>".add("0,12")
+  )
   .sound("supersaw")
   .dec(.05).sus(.05).rel(0)
   .unison(4)
