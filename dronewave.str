@@ -20,11 +20,11 @@ const mainStabs = "<g4(3, 8)*2 f4(3, 8)*2 ab4(3, 8)*2 g4(3, 8)*2>";
 const variantStabs = "<g4(3, 8)*2 f4(10, 16) [ab4 - <- g4> <ab4 bb4> - <- c5> ab4 <- eb5>]*2 g4(6, 16)>";
 
 stabs: note(variantStabs) // pattern
-  .sound("square") // osc
+  .sound("saw") // osc
   .att(.001).dec(.05).sus(.05).rel(0) // adsr
-  .chorus(saw.range(1, 5)).phaser(.5).delay(.6).room(2) // fx
+  .chebyshev("3:.3").chorus(saw.range(1, 5)).phaser(.5).delay(.6).room(2) // fx
   .gain(.8) // postfx
-  .orbit(4) // routing
+  .orbit(3) // routing
   ._scope()
 
 reese: note("c1")
