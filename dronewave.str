@@ -7,9 +7,9 @@ register('rlpf', (x, pat) => {
 
 const kickPat =
   "bd!4";
-// "bd(3, 8)*2";
+  // "bd(3, 8)*2";
 
-kick: s(kickPat).bank("tr909").dec(.4).asym("1:.8").duck(4).duckattack(.16).duckdepth(.8)
+kick: s(kickPat).bank("tr909").dec(.4).asym("2.5:.8").duck(4).duckattack(.16).duckdepth(.8)
 snare: s("[- sd]*2").bank("tr909").diode("2:.5").room(.5).gain(.75)
 hats: s("hh!16").bank("tr909").gain("<.125 .25>*8")
 
