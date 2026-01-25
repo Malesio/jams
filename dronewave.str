@@ -27,11 +27,13 @@ stabs: note(variantStabs) // pattern
   .orbit(3) // routing
   ._scope()
 
-reese: note("c1")
+reese: note("c1,c2")
   .sound("supersaw")
-  .att(.01).dec(.05).sus(.05).rel(0)
-  .unison(8).detune(.5)
-  .lpf(200)
+  .dec(.05).sus(.05).rel(0)
+  .unison(4)
+  .detune(.5)
+  .att(.05)
+  .lpf(200).lpenv(9)
   .diode("4.5:.4")
   .compressor("-20:20:10:.002:.02")
   .orbit(5)
