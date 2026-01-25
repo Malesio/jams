@@ -47,6 +47,8 @@ reese: note(
 lead_pluck: note("[eb4 -@4 eb4 d4 eb4 c4 -@7]/2").sound("bytebeat")
   .decay(.1).sustain(0).release(.3)
   .delay(2).room(3).rsize(3)
+  .hpf(500)
   .gain(.9)
+  .compressor("-10:20:10")
   .orbit(5)
   ._scope()
