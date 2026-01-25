@@ -5,12 +5,16 @@ register('rlpf', (x, pat) => {
   return pat.lpf(pure(x).mul(12).pow(4))
 });
 
-kick: s("bd(3, 8)*2").bank("tr909").duck("5").duckattack(.16).duckdepth(.8).gain(1.4)
-snare: s("[- sd]*2").bank("tr909").room(.5).size(1).diode(1.6).gain(.6)
-hats: s("hh!16").bank("tr909").gain("<.125 .25>*8").pan(sine.mul(.5).fast(4))
+const kickPat =
+  "bd!4";
+// bd(3, 8)*2;
 
-drone_root: note("[c3 - - c3 - - c3 <- c3>]*2").sound("sawtooth").rlpf(slider(0.396)).lpq(6).room(2).orbit(3)
-drone_chords: note("c3 -, g3 -, c4 -").seg(4).sound("sawtooth").fast(2).rlpf(slider(0.450)).lpq(2).room(2).gain(.6).orbit(3)
+kick: s(kickPat).bank("tr909").dec(.4).asym("1:.8").duck(4).duckattack(.16).duckdepth(.8)
+snare: s("[- sd]*2").bank("tr909").diode("2:.5").room(.5).gain(.75)
+hats: s("hh!16").bank("tr909").gain("<.125 .25>*8")
+
+drone_root: note("[c2 - - c2 - - c2 <- c2>]*2").sound("sawtooth").rlpf(slider(0.227)).lpq(6).room(2).orbit(2)
+drone_chords: note("c3 -, g3 -, c4 -").sound("sawtooth").fast(2).rlpf(slider(0.345)).lpq(2).room(2).gain(.6).orbit(2)
 
 const mainStabs = "<g4(3, 8)*2 f4(3, 8)*2 ab4(3, 8)*2 g4(3, 8)*2>";
 const variantStabs = "<g4(3, 8)*2 f4(10, 16) [ab4 - <- g4> <ab4 bb4> - <- c5> ab4 <- eb5>]*2 g4(6, 16)>";
