@@ -1,0 +1,48 @@
+setCpm(138/4)
+
+register('pluck', (x, pat) => {
+  const pluckiness = pure(x).mul(.1).add(.05);
+  return pat.dec(pluckiness).sus(0).rel(0);
+});
+
+const energy = tri.slow(4).range(.1, .905).pow(.3); // n-th root to stay longer in high-range values
+
+arp: n("<0 7 0 4 0 7 5>*16".add("<7@2 [1 4] [2 5]>").sub("<0 7>*4")).scale("e:minor").trans("12")
+  .s("saw")
+  .penv(-12).pdec(.02).patt(.001)
+  .pluck(energy)
+  .lpf(100).lpenv(energy.mul(6).add(2)).lpq(2).lps(.16).lpd(.2)
+  .diode("3.5:.4")
+  .crush(energy.mul(-1).add(1).mul(13).add(3))
+  .rarely(ply("2"))
+  .delay(.3)
+  .room(.8).size(2)
+  .compressor("0:10")
+  .o(3)
+  ._pianoroll()
+
+bass: n("<0@2 3 5>").scale("e:minor").trans("-12,-24")
+  .s("supersaw")
+  .unison(2).detune(.3)
+  .seg(16)
+  .dec(.12)
+  .dist("3.5:.4")
+  .lpf(100).lpenv(slider(5.805, 0, 9)).lpq(2).lps(.16).lpd(.2)
+  .compressor("-3:10")
+  .o(4)
+  ._scope()
+drums4: stack(
+  s("bd").seg(4).duck("3:4:5:6").duckattack(.1).duckdepth(.8).dist(.9).gain(1.4),
+  // s("hh").seg(16).gain("<.3 .5>*8".add(.2)),
+  s("oh").struct("[~ x]*4").gain(.6).delay(.3),
+  s("sd").struct("[~ <x!15 [x ~@2 x]>]*2").diode(3.5).gain(.1),
+  s("cp").seg(4).gain(.2).room(3).size(5).o(6),
+).bank("tr909")
+
+pad: s("gm_violin").n("<0!2 3 <2 4>>").scale("e:minor").trans("12,24")
+  .bpf(650).bpq(.5)
+  .dist("1.4:.3")
+  .room(2)
+  .size(3)
+  .compressor("-3:20")
+  .o(5)
