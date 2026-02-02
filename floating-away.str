@@ -1,0 +1,50 @@
+setCpm(138/4)
+
+kick: s("bd").seg(4).bank("tr909").dec(.4).dist(.9).gain(1.8).duck("3:4:5").duckattack(.2).duckdepth(.8)
+hats: s("oh").bank("tr909").struct("[~ x]*4").delay(.3).gain(.4)
+clap: s("cp").struct("[~ x]*2").bank("tr909").diode(3.5).room(1).size(2).gain(.1)
+
+stabs: s("supersaw")
+  .struct("x(7, 16)")
+  .dec(.15).rel(.3).clip(1)
+  .unison(9).detune(.7)
+  .penv(36).patt(.003).pdec(.03)
+  .chord("<Em G Am C D Bsus B>").voicing()
+  .diode("3.5:.3")
+  .gain(.6)
+  .chorus(.7)
+  .room(1)
+  .size(1)
+  .compressor("-10:20")
+  .o(3)
+  ._pitchwheel()
+
+bass: s("supersaw").seg(16)
+  .unison(5).detune(.7)
+  .n("<0 2 3 5 6 4 4>").scale("e:minor").trans(-24)
+  .diode(2)
+  .lpf(150).lpq(2)
+  .compressor("-3:10")
+  .o(4)
+  ._scope()
+
+const leadPat = `<
+  [0 2 3 7 5 4]
+  [2 7 1 2 4 5]
+  [3 0 3 5 6 3]
+  [0 5 4 2 3 2]
+  [6 3 6 1 2 3]
+  [4 2 5 4 3 2]
+  [4 1 5 4 3 2]
+>`;
+
+lead: s("gm_violin").n(leadPat).scale("e:minor").trans(24)
+  .att(.08)
+  .struct("x(6, 8)")
+  .chebyshev("2.5:.9")
+  .lpf(800).lpenv(1.2).lpq(3).lps(.16).lpd(.2)
+  .delay(.5).delaytime(3/8).delayfb(.2)
+  .compressor("0:10")
+  .rarely(ply("2"))
+  .o(5)
+  ._scope()
