@@ -1,6 +1,6 @@
 setCpm(138/4)
 
-kick: s("bd").seg(4).bank("tr909").dec(.4).dist(.9).gain(1.8).duck("3:4:5").duckattack(.2).duckdepth(.8)
+kick: s("bd").seg(4).bank("tr909").dec(.4).dist(.9).gain(1.8).duck("3:4:5").duckattack(.16).duckdepth(.8)
 hats: s("oh").bank("tr909").struct("[~ x]*4").delay(.3).gain(.4)
 clap: s("cp").struct("[~ x]*2").bank("tr909").diode(3.5).room(1).size(2).gain(.1)
 
