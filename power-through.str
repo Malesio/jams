@@ -1,0 +1,47 @@
+setCpm(138/4)
+
+const fourFour = "0,4,8,12";
+const jersey = "0,4,8,11,14";
+const dnb = "0,7,10,14";
+
+$: s("bd").beat(fourFour, 16).bank("tr909").dec(.15).gain(2).duck("3:4:5:6").duckattack(.16).duckdepth(.8)
+$: s("cr").struct("<x ~@3>/2").bank("alesissr16").room(.2).size(1).compressor("0:20:10").gain(2)
+$: s("oh").struct("[~ x]*4").bank("tr909").delay(.3).gain(.6)
+$: s("cp").struct("[~ x]*2").bank("tr909").diode(3.5).room(1).size(2).gain(.1)
+$: s("white").seg(4).lpf(10000).room(2).size(2).gain(.4).o(6)
+
+$: s("supersaw").n("<0 2 3 4>").scale("g2:minor").trans("0,-12,-24")
+  .struct("[x!2 x@2]*4")
+  .unison(7).detune(.8)
+  .lpf(60).lpenv(slider(7.965, 0, 9)).lpq(2).lps(.16).lpd(.2)
+  .dist("2.5:.5")
+  .compressor("-3:20:10")
+  .o(3)
+  ._scope()
+
+$: s("saw").n("<4 5 3 [2 1]>".sub("[0@2 <4 3 -2 1> 0]")).scale("g5:minor").trans("0,-12")
+  .struct("x(5, 16)")
+  .ply("[1@2 2 1]")
+  .dec(.15).sus(0).rel(0)
+  .penv(36).patt(.003).pdec(.03)
+  .unison(7).detune(.2)
+  .bpf(1000).bpq(.9)
+  .chebyshev("2.5:.6")
+  .delay(.3)
+  .room(2)
+  .size(1)
+  .compressor("-6:20:10")
+  .o(4)
+  ._scope()
+
+$: s("square").n("<0 2 3 0 5 4 0 1>*16").scale("g6:minor")
+  .seg(16)
+  .hpf(1200)
+  .chebyshev("1.5")
+  .delay(.3)
+  .room(2)
+  .size(1)
+  .compressor("-30:20:10")
+  .gain(.3)
+  .o(5)
+  ._pianoroll()
