@@ -10,10 +10,10 @@ const bdPatt =
 
 $: stack(
   s("white!4").postgain(0).duck(5).duckdepth(.8),
-  s(bdPatt).bank("tr909").dec(.4).duck("4").duckattack(.15).dist(1).duckdepth(.9).compressor(-10),
-  s("[~ <sd!15 [sd ~@2 sd]>]*2").bank("tr909").dec(.1).dist(2).hpf(1000).compressor(-20),
+  s(bdPatt).bank("tr909").dec(.4).duck("4").duckattack(.15).dist(.2).gain(2).duckdepth(.9),
+  s("[~ <sd!15 [sd ~@2 sd]>]*2").bank("tr909").dec(.1).diode(3.5).gain(.4).hpf(700),
   s("[~ oh]*4").bank("tr909").dec(.1).delay(.1),
-  s("cp!4").bank("tr909").att(.03).room(3).size(3).gain(.3).o(5)
+  s("cp!4").bank("tr909").att(.03).room(3).size(3).gain(.8).o(5)
 )
 
 $: s("supersaw").note("<f2@14 g#2 f#2>*8".add("0,-12").add(bassOffset))
