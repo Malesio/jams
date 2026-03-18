@@ -1,0 +1,36 @@
+setCpm(118/4)
+
+$: s("bd").bank("ry30").seg(4)
+  .when("<0@15 1>*4", ply("2"))
+  .dist(.3)
+  .lpf(700)
+  .gain(2)
+  .duck("3:4:5").duckattack(.16).duckdepth(.8)
+
+$: s("oh").bank("tr909").struct("[~ x]*4").dec(.2).delay(.2).gain(.6)
+
+$: s("hh").bank("tr808").seg(16).gain(.6)
+
+$: s("sd").bank("mpc1000").struct("[~ x]*2").dec(.16).lpf(4000).diode(3.5).room(1).size(1).postgain(.4).o(6)
+
+$: n("<0@4 0@4 0@3 2@3 1@2>*16".add("<0 [2 0 2 0 2] 0 [[0 6] [0 4]]>")).scale("c1:phrygian").scaleTrans("0,11")
+  .s("cb").bank("tr808")
+  .diode("1.5:.8")
+  // .lpf(2000)
+  .hpf(300)
+  .delay(.3).delaytime(1/4)
+  .sometimes(x => x.clip(.7).ply("2"))
+  .room(2)
+  .size(2)
+  .o(4)
+  .compressor("-3:8:10")
+
+$: n("<3@4 5@4 0@4 6@4>*4").scale("db1:phrygian")
+  .s("supersaw").seg(16)
+  // .add(note("0,-0.1,0.2"))
+  .unison(7).detune(1.2)
+  .lpf(80)
+  .diode("3.5:.6")
+  .compressor("-30:20:10")
+  .o(5)
+  ._scope()
