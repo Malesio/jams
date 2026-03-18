@@ -1,0 +1,41 @@
+setCpm(120/4)
+
+$: s("bd").bank("ry30").seg(4).dist(.4).gain(2)
+  .duck("3:4").duckattack(.14).duckdepth(.9)
+
+$: s("hh").bank("tr808").seg(16).gain(1.2)
+$: s("oh").bank("tr909").struct("[~ x]*4").gain(.8)
+
+$: s("sd").bank("mpc1000").struct("[~ x]*2").hpf(2000).lpf(1000).diode(3.5).room(1).size(.5).gain(1.3).o(6)
+
+$: s("cr").bank("alesissr16").struct("<x ~@15>")
+
+$: n("<0@5 [2 1] 3 [5 [4@3 -1]]>/2").scale("f#2:minor").scaleTrans("0,-7")
+  .s("saw").struct("[~ x!3]*4")
+  .lpf(sine.slow(4).range(80, 220))
+  .chebyshev("2.5:.6")
+  .compressor("-30:20:10")
+  .o(4)
+  ._scope()
+
+$: n("[0,1,4,7,8] [0,3,5,7,8] [0,2,4,7,9]@2").scale("f#3:minor")
+  .s("supersaw").seg("<8@15 16>*4")
+  .dec(.16)
+  .unison(7).detune(.8)
+  .delay(.4)
+  .room(1).roomdim(600)
+  .hpf(300)
+  .diode("2.2:.6")
+  .compressor("-5:20:10")
+  .o(3)
+
+$: n("<0 ~@3>").scale("f#5:minor").scaleTrans("0,7")
+  .s("square").add(note("0,0.2,-0.1"))
+  .fm(.5).fmwave("brown")
+  .dec(.25).sus(0).rel(.1)
+  .chorus(.8)
+  .delay(.6).delaytime(1/4).delayfb(.85)
+  .room(2).roomsize(3)
+  .compressor("-1:20:10")
+  .o(5)
+  ._scope()
