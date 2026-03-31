@@ -7,7 +7,7 @@ $: s("sd").bank("tr909").struct("[~ x]").dec(.15).hpf(400).diode("3.5").room(.9)
 $: s("cp").bank("tr909").seg(4).gain(.4).room(3).size(5).o(6)
 
 $: n("<0 9 10 0 7 6 0 5 4 0>*16".add("<5 [3 4] 0 [0 1]>")).scale("d3:minor")
-  .s("supersaw")
+  .s("supersaw,saw")
   .unison(9).detune(.8).spread(.85)
   .dec(.15)
   .fm(.65).fmwave("brown")
