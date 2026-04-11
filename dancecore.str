@@ -4,8 +4,8 @@ const kickFast = 4;
 
 rhythm: stack(
   s("bd").bank("tr909").dist(.2).gain(2).fast(kickFast).late("[0 0.01]*2"),
-  s("[~ <sd!7 [sd ~ ~ sd]>]*2").bank("tr909").diode(2.8).dec(.2).gain(.6)
-).duck("3:4:5").duckattack(.2).duckdepth(.8)
+  s("[~ <sd!7 [sd ~ ~ sd]>]*2").bank("tr909").diode(2.8).dec(.16).gain(.6)
+).duck("3:4:5:6").duckattack(.2).duckdepth(.8)
   // .rib(0, 1/4)
 
 tops: stack(
