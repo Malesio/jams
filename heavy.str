@@ -6,7 +6,7 @@ register('acidenv', (x, pat) => {
 
 $: s("[bd:1 sd:12]!2"
      .rib(0,1/4)
-    ).bank("tr909").dec(.7).duck("4:5").duckdepth(.8).dist("2:.7")
+    ).bank("tr909").hpf(160).gain(2).dec(.7).duck("4:5").duckattack(.16).duckdepth(.8).dist("2:.7")
 
 $: s("[~ oh]*4").bank("tr909").dec(.1).delay(.4).gain(.6)
 
