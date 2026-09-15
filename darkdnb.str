@@ -11,7 +11,7 @@ $: stack(
 )
 
 $: s("supersaw").note("<f2@2 a#2 <ab2 [db2 [c3 c2]]>>".add("0,-12")).seg(16)
-  .unison(2)
+  .unison(3)
   .detune(rand)
   .fm(.3)
   .fmh(.01)
