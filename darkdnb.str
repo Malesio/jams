@@ -10,7 +10,7 @@ $: stack(
   s("cp!4").bank("tr909").dec(.16).room(3).size(5).gain(.6).o(6)
 )
 
-$: s("supersaw").note("<f2@2 a#2 ab2>".add("0,-12")).seg(16)
+$: s("supersaw").note("<f2@2 a#2 <ab2 [db2 [c3 c2]]>>".add("0,-12")).seg(16)
   .unison(2)
   .detune(rand)
   .fm(.3)
