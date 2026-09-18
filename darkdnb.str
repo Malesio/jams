@@ -6,7 +6,7 @@ const jerseyBeat = "0,4,8,11,14";
 $: stack(
   s("bd").bank("tr909").beat(dnbBeat, 16).dec(.4).duck("3:4:5:6").duckattack(.17).duckdepth(.8).gain(2),
   s("sd").bank("tr909").beat("4,12", 16).dec(.15).diode(2.8).gain(.6),
-  s("hh*8").bank("tr909").gain(1.2),
+  s("hh*8").bank("bossdr110").dec(.15).gain(1.2).almostNever(ply(2)),
   s("cp!4").bank("tr909").dec(.16).room(3).size(5).gain(.6).o(6)
 )
 
