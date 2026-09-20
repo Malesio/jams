@@ -12,9 +12,9 @@ bass: n("<0 -1 3 <5 4>>").scale("e:minor").trans("-12,-24")
   ._scope()
 
 drums: stack(
-  s("bd").bank("tr909").struct("<[x <[~ x] ~> ~ x] [<~ [~ x]> x ~ <~ x>]>").duck("3:4:5:6:7").duckattack(.2).duckdepth(.8).dist(1.1).gain(1.8),
-  s("hh").bank("tr808").seg(8).sometimes(ply("2 | 3 | 4")).gain(1.2),
-  s("sd").bank("tr909").struct("[~ x]").diode("3.5:.7").room(2).size(1).gain(.3).o(6),
+  s("bd").bank("ry30").struct("<[x <[~ x] ~> ~ x] [<~ [~ x]> x ~ <~ x>]>").dec(.18).duck("3:4:5:6:7").duckattack(.2).duckdepth(.8).gain(1.8),
+  s("hh").bank("tr808").seg(8).rarely(ply("2 | 3 | 4")).gain(1.2),
+  s("sd").bank("tr909").struct("[~ x]").dec(.25).diode("3.5:.7").room(1.2).size(3).gain(.3).o(6),
   s("cp").bank("tr909").seg(4).gain(.2).room(3).size(5).o(7),
 )
 
