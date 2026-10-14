@@ -1,0 +1,68 @@
+/*
+ * Like one of those days,
+ * when you feel like
+ * screaming your soul out
+ * at the top of your lungs
+ * until your breath dries out,
+ * until your voice dies out,
+ * and yet nobody hears you.
+ * and thus you may
+ * never be heard again;
+ * never feel heard again.
+ */
+setCpm(122/4)
+
+const bd = "0,3?,6,9?,10,14";
+
+$: s("bd").bank("ry30").beat(bd, 16).slow(2).dec(.15).lpf(170).gain(2).dist(.1).duck("3:4:5").duckattack(.16).duckdepth(.8)
+$: s("hh").bank("bossdr220").dec(.1).seg(16).gain("<.4 1>*8")
+$: s("cp").bank("tr909").struct("[~ x]").diode(2.5).delay(.6).delaysync(1/8).room(2).size(2).gain(.4)
+
+const ld = {
+  main: "<0!4 ~ 0!3>*8".ply(2),
+  alt: "<0!4 ~ 0!3>*8".fast(2),
+  arp: "<0 -7 0 <3 -4>>*16",
+  sync: "0(11, 16)",
+  melody: `<[4 3 1 2] [3 0 -1 2] [0 -5 -4 -3] [2 -1 0 -7]
+            [-5 -2 -3 -1] [0 3 4 2] [-3 2 0 1] [-3 2 1 0]>`.late(0.01),
+};
+
+$: n(ld.arp).scale("a6:minor").scaleTrans("<-2 -3 0 -7>".sub("[0 3]*4"))
+  .s("supersaw,square")
+  .adsr(".01:.3:0:0")
+  .penv(12).patt(.003).pdec(.03)
+  .unison(7).detune(.6).spread(.85)
+  .fm(slider(3.525, 0, 5)).fmwave("saw")
+  .lpf(120).lpenv(slider(9, 0, 9)).lpq(2).lps(.16).lpd(.2)
+  .dist("2.5:.4")
+  .disttype("soft")
+  .delay(.2)
+  .room(.6).size(1)
+  .gain(.8)
+  .compressor("-10:20:10")
+  .o(3)
+  ._scope()
+
+$: anchor("a4").chord("<<FM7 Dm11> [Esus E7] Am [Asus <C6 G6>]>").voicing()
+  .s("supersaw,gm_pad_sweep").seg(4)
+  .adsr(".01:1:.7:0")//.struct("x(11, 16)")
+  .unison(7).detune(.8).spread(.85)
+  .fm(slider(3.975, 0, 5)).fmwave("saw")
+  .dist("2.5:.6")
+  .disttype("diode")
+  .lpf(500).lpenv(slider(5.769, 0, 9)).lpq(2).lps(1)
+  .delay(.2)
+  .room(.7).size(1)
+  .gain(.1)
+  .o(4)
+  ._scope()
+$: n("<<5 3> 4 7 [7 <2 6>]>").scale("a1:minor").scaleTrans("0,-7")
+  .s("supersaw").seg(8).ply("<2 1@15>*8")
+  .unison(7).detune(.7).spread(.85)
+  .lpf(70).lpenv(slider(3.807, 0, 9)).lps(.16).lpd(.2)
+  .dist("2.5:.6")
+  .disttype("asym")
+  .gain(.6)
+  .o(5)
+  ._scope()
+
