@@ -6,7 +6,7 @@ $: s("bd").bank("ry30").beat("0,3?,6,9?,10,15?", 16).slow(2)
   .duck("3:4:5")
   .duckattack(.19)
   .duckdepth(.85)
-$: s("hh").bank("tr808").seg(8).gain(.8).rarely(ply("2 | 3 | 4"))
+$: s("hh").bank("tr808").seg(8).gain(1.4).rarely(ply("2 | 3 | 4"))
 $: s("cp").bank("tr909").beat("4,7?,9?,12,15?",16).slow(2).dec(.05).diode(4.5).gain(.2)
 
 const scale = "bb3:minor";
